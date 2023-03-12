@@ -7,7 +7,25 @@ import MovieListScreen from "./screens/MovieListScreen/MovieListScreen.main";
 import MovieDetailScreen from "./screens/MovieDetailScreen/MovieDetailScreen.main";
 import MovieFilterScreen from "./screens/MovieFilterScreen/MovieFilterScreen.main";
 
-/* TODO: 
+const Stack = createStackNavigator();
+const RootStack = createStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="List" component={MovieListScreen}/>
+        <Stack.Screen name="Detail" component={MovieDetailScreen}/>
+      </Stack.Navigator>
+      <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+        <RootStack.Screen name="filter" component={MovieFilterScreen}/>
+      </RootStack.Group>
+    </NavigationContainer>
+  
+  )
+    
+}
+/* TODO:
 
   This app has three screens:
     (1) MovieListScreen

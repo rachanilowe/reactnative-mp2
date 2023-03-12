@@ -14,9 +14,10 @@ export default function MovieListScreen({ navigation, route }) {
   const [actors, setActors] = useState([]);
 
   // TODO: Fill out the methods below.
-  const selectedMovie = (movieItem) => {};
+  const selectedMovie = (movieItem) => {navigation.navigate(Detail, 
+    {movieItem})};
 
-  const selectedFilterButton = () => {};
+  const selectedFilterButton = () => {naviagtion.navigate(Filter)};
 
   useEffect(
     () => {
@@ -37,6 +38,7 @@ export default function MovieListScreen({ navigation, route }) {
       */
     },
     [
+      actors
       /* TODO: Insert dependencies here. What variable changes 
         when we come back from the filter screen? */
     ]
@@ -71,7 +73,11 @@ export default function MovieListScreen({ navigation, route }) {
   // a SafeAreaView to support iOS.
   return (
     <SafeAreaView style={styles.container}>
-      {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
+      {<SearchBar
+        placeholder="Type Here..."
+        onChangeText={this.updateSearch}
+        value={search}/>
+      /* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */}
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
     </SafeAreaView>
