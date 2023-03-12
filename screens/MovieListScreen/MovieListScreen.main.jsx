@@ -15,12 +15,19 @@ export default function MovieListScreen({ navigation, route }) {
 
   // TODO: Fill out the methods below.
   const selectedMovie = (movieItem) => {navigation.navigate(Detail, 
-    {movieItem})};
+    {image: movieItem.posterurl,
+     title: movieItem.title,
+     year: movieItem.year,
+     genres: movieItem.genres,
+     actors: moveItem.actors,
+     storyline: movieItem.storyline
+    })};
 
   const selectedFilterButton = () => {naviagtion.navigate(Filter)};
 
   useEffect(
     () => {
+      
       // TODO: Add a "Filter" button to the right bar button.
       // It should lead to the MovieFilterScreen, and pass the "actors" state
       // variable as a parameter.
@@ -59,8 +66,18 @@ export default function MovieListScreen({ navigation, route }) {
     // TODO: Set up search & filter criteria.
     let meetsSearchCriteria = true;
     let meetsActorsCriteria = true;
+    const movieFlex = [];
 
     if (meetsSearchCriteria && meetsActorsCriteria) {
+      return (movieFlex.push(
+        <TouchableOpacity
+        onPress={() => selectedMovie(item)}>
+          <Text>
+            {MovieCell(item)}
+          </Text>
+        </TouchableOpacity>
+      ))
+      
       // TODO: Return a MovieCell, wrapped by a TouchableOpacity so we can handle taps.
     } else {
       // If the item doesn't meet search/filter criteria, then we can
@@ -73,12 +90,15 @@ export default function MovieListScreen({ navigation, route }) {
   // a SafeAreaView to support iOS.
   return (
     <SafeAreaView style={styles.container}>
-      {<SearchBar
+      <SearchBar
         placeholder="Type Here..."
         onChangeText={this.updateSearch}
         value={search}/>
-      /* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
+      {/* TODO: Add a SearchBar: https://reactnativeelements.com/docs/searchbar/.
                 The third-party package should already be installed for you. */}
+      <FlatList 
+        data={movieFlex}
+      />
       {/* TODO: Add a FlatList: https://reactnative.dev/docs/flatlist */}
     </SafeAreaView>
   );
